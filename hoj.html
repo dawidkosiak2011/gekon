@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wielkanocne Życzenia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0000FF;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            padding-top: 50px;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 3em;
+        }
+
+        p {
+            color: #4CAF50;
+            font-size: 1.5em;
+        }
+
+        .clock {
+            font-size: 2em;
+            margin-top: 20px;
+            color: #2c3e50;
+        }
+
+        #flower-petals {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .flower-petal {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #FFB6C1;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall 5s infinite;
+            transform: rotate(45deg);
+        }
+
+        /* Animacja opadania płatków */
+        @keyframes fall {
+            0% {
+                top: -10%;
+                transform: translateX(0);
+            }
+            100% {
+                top: 100%;
+                transform: translateX(100px);
+            }
+        }
+
+        .flower-petal:nth-child(odd) {
+            background-color: #FF69B4;
+            width: 40px;
+            height: 20px;
+            transform: rotate(60deg);
+        }
+
+        .flower-petal:nth-child(even) {
+            background-color: #FFD700;
+            width: 35px;
+            height: 25px;
+            transform: rotate(120deg);
+        }
+
+        
+        .image-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            max-width: 80%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="greetings">
+            <h1>Wesołych Świąt Wielkanocnych!</h1>
+            <p>Niech ten czas napełni Cię nadzieją, radością oraz wiosenną energią!</p>
+            <div class="clock">
+                <span id="time"></span>
+            </div>
+        </div>  
+    <div id="flower-petals"></div>
+
+<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fpl.pngtree.com%2Ffree-easter-background&psig=AOvVaw3XiwPF7qEwruRvUrroPU6I&ust=1743160980454000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCOCHrpSTqowDFQAAAAAdAAAAABAE" alt="" style="max-width: 100%; display: block;">
+
+
+    <script>
+        
+        function updateTime() {
+            const timeElement = document.getElementById("time");
+            const currentDate = new Date();
+            const hours = String(currentDate.getHours()).padStart(2, "0");
+            const minutes = String(currentDate.getMinutes()).padStart(2, "0");
+            const seconds = String(currentDate.getSeconds()).padStart(2, "0");
+            const date = currentDate.toLocaleDateString("pl-PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+            timeElement.textContent = `Data: ${date}, Godzina: ${hours}:${minutes}:${seconds}`;
+        }
+
+        
+        function createFlowerPetals() {
+            const flowerPetalsContainer = document.getElementById('flower-petals');
+            const petalCount = 30;
+
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('flower-petal');
+                petal.style.left = `${Math.random() * 100}%`;
+                petal.style.animationDuration = `${Math.random() * 5 + 3}s`; // Losowy czas animacji
+                petal.style.animationDelay = `${Math.random() * 5}s`; // Losowe opóźnienie animacji
+                flowerPetalsContainer.appendChild(petal);
+            }
+        }
+
+        
+        updateTime();
+        setInterval(updateTime, 1000);
+        createFlowerPetals();
+    </script>
+</body>
+</html>
